@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { useState } from 'react';
-import { Buttons } from './Buttons/Buttons';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
 
 export const App = () => {
   const [good, setGood] = useState(0);
@@ -39,18 +40,21 @@ export const App = () => {
   return (
     <div>
       <h1> cafe "Expresso" </h1>
-      <h2>Please leave feedback</h2>
-      <Buttons
-        options={['Good', 'Neutral', 'Bad']}
-        onLeaveFeedback={onLeaveFeedback}
-      />
-      <Statistics
-        good={good}
-        neutral={neutral}
-        bad={bad}
-        total={total}
-        positiveFeedback={positiveFeedback}
-      />
+      <Section title={'Please leave feedback'}>
+        <FeedbackOptions
+          options={['Good', 'Neutral', 'Bad']}
+          onLeaveFeedback={onLeaveFeedback}
+        />
+      </Section>
+      <Section title={'Statistics'}>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          positiveFeedback={positiveFeedback}
+        />
+      </Section>
     </div>
   );
 };
