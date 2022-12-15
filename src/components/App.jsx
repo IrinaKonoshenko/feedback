@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
+import { Notification } from './Notification/Notification';
 
 export const App = () => {
   const [good, setGood] = useState(0);
@@ -47,13 +48,17 @@ export const App = () => {
         />
       </Section>
       <Section title={'Statistics'}>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positiveFeedback={positiveFeedback}
-        />
+        {total ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positiveFeedback={positiveFeedback}
+          />
+        ) : (
+          <Notification message={'There is no feedback'} />
+        )}
       </Section>
     </div>
   );
